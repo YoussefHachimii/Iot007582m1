@@ -35,8 +35,9 @@ async function v0(){
     const mongoName = "lucioles"                   //Nom de la base
     //const mongoUri = 'mongodb://localhost:27017/'; //URL de connection		
     //const mongoUri = 'mongodb://10.9.128.189:27017/'; //URL de connection
+    //const mongoUri = 'mongodb+srv://menez:pass...l@cluster0.x0zyf.mongodb.net/lucioles?retryWrites=true&w=majority';
     var mongoUri = process.env.MONGOLAB_URI;
-    //const mongoUri = 'mongodb+srv://menez:6poD2R2gil@cluster0.x0zyf.mongodb.net/lucioles?retryWrites=true&w=majority';
+
 
     //Now that we have our URI, we can create an instance of MongoClient.
     const mg_client = new MongoClient(mongoUri,
@@ -106,7 +107,7 @@ async function v0(){
 	    console.log("\nMQTT msg on topic : ", topic.toString());
 	    console.log("Msg payload : ", message.toString());
 
-	    // Parsing du message supposé recu au format JSON
+	    // Parsing du message supposï¿½ recu au format JSON
 	    message = JSON.parse(message);
 	    wh = message.who
 	    val = message.value
@@ -119,7 +120,7 @@ async function v0(){
 	    }
 	    console.log("wholist using the node server :", wholist);
 
-	    // Mise en forme de la donnee à stocker => dictionnaire
+	    // Mise en forme de la donnee ï¿½ stocker => dictionnaire
 	    // Le format de la date est iomportant => compatible avec le
 	    // parsing qui sera realise par hightcharts dans l'UI
 	    // cf https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_tolocalestring_date_all
@@ -133,7 +134,7 @@ async function v0(){
 	    
 	    // On recupere le nom basique du topic du message
 	    var key = path.parse(topic.toString()).base;
-	    // Stocker le dictionnaire qui vient d'etre créé dans la BD
+	    // Stocker le dictionnaire qui vient d'etre crï¿½ï¿½ dans la BD
 	    // en utilisant le nom du topic comme key de collection
 	    dbo.collection(key).insertOne(new_entry, function(err, res) {
 		if (err) throw err;
@@ -169,7 +170,7 @@ v0().catch(console.error);
 
 //====================================
 // Utilisation du framework express
-// Notamment gérér les routes 
+// Notamment gï¿½rï¿½r les routes 
 const express = require('express');
 // et pour permettre de parcourir les body des requetes
 const bodyParser = require('body-parser');
@@ -222,8 +223,8 @@ app.get('/esp/:what', function (req, res) {
     console.log("wants to GET ", wa);
     console.log("values from object ", wh);
     
-    // Récupération des nb derniers samples stockés dans
-    // la collection associée a ce topic (wa) et a cet ESP (wh)
+    // Rï¿½cupï¿½ration des nb derniers samples stockï¿½s dans
+    // la collection associï¿½e a ce topic (wa) et a cet ESP (wh)
     const nb = 200;
     key = wa
     //dbo.collection(key).find({who:wh}).toArray(function(err,result) {
